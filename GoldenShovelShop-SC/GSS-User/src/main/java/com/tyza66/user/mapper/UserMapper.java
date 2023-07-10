@@ -2,6 +2,7 @@ package com.tyza66.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tyza66.user.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ import java.util.List;
  **/
 
 public interface UserMapper extends BaseMapper<User> {
-    List<User> login(String username, String password);
+    List<User> login(@Param("username") String username,@Param("password") String password);
 }

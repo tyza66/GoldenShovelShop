@@ -99,6 +99,16 @@
             <artifactId>nacos-client</artifactId>
             <version>1.3.2</version>
         </dependency>
+        <!--sentinel核心库-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--sentinel持久化到nacos用到-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

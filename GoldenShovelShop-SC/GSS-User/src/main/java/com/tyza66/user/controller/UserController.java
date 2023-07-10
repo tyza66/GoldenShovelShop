@@ -4,6 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.tyza66.user.pojo.User;
 import com.tyza66.user.service.UserService;
 import com.tyza66.user.service.impl.UserServiceImpl;
@@ -27,6 +28,7 @@ public class UserController {
     UserServiceImpl userService;
 
     @ApiOperation("测试连通性")
+    @SentinelResource(value = "test", blockHandler = "blockAdd")
     @GetMapping("/test")
     public JSON test(){
         JSONObject obj = JSONUtil.createObj();

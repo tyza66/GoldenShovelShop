@@ -9,7 +9,7 @@
 
 ##### 使用技术
 环境：Java8、Node、React、MySQL、Nacos、Docker、RocketMQ、Sentinel
-后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token、Knife4j、MyBatis、MyBatisPlus、RocketMQ、Hutool、Sentinel
+后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token、Knife4j、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Jackson
 前端技术栈：React、Ant Design、Axios、React Router
 
 ##### Nacos注册中心
@@ -17,8 +17,9 @@
 - 使用Nacos注册中心管理全局的服务和网关
 
 ##### 服务端口列表
-- Nacos注册中心：8848
-- React前端页面：8080
+- Nacos(注册中心)：8848
+- Sentinel(流控降级)：9091
+- React(前端页面)：8080
 - GSS-Gateway(Gateway网关)：9090
 - GSS-User(用户服务)：9601
 
@@ -37,6 +38,11 @@
 - 管理员：1
 
 ##### 返回code表
+- 接口限流（未处理）：100
+- 服务降级（未处理）：101
+- 热点参数限流（未处理）：102
+- 触发系统保护规则（未处理）：103
+- 授权规则不通过（未处理）：104
 - 成功：200
 - 权限不足：201
 - 失败：202

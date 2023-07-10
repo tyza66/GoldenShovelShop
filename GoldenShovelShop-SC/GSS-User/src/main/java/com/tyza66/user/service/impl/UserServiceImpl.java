@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tyza66.user.mapper.UserMapper;
 import com.tyza66.user.pojo.User;
 import com.tyza66.user.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
