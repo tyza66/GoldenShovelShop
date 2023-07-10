@@ -1,0 +1,38 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: GSS-gateway
+  #gateway配置
+  cloud:
+    gateway:
+      routes: #路由规则
+        - id: user_route
+          uri: lb://user-service #需要转发的地址 lb就是使用nacos本地负载均衡策略
+          predicates: #断言规则 用于路由规则的匹配
+            - Path=/user/**
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]': #拦截的请求
+            allowedOrigins: #允许跨域的请求
+              - "http://localhost:8080"
+              - "http://127.0.0.1:8080"
+            allowedMethods: #运行跨域的请求方式
+              - "GET"
+              - "POST"
+            allowedHeaders: "*" #允许请求中携带的头信息
+            allowedCredentials: true #是否允许携带cookie
+            maxAge: 36000 #跨域检测的有效期,单位s
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:9090
+          #scg:
+        #fallback:
+        #mode: response
+        #response-body: "{code:'',message:''}"

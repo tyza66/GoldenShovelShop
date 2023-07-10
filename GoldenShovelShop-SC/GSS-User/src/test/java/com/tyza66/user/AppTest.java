@@ -1,4 +1,4 @@
-package com.tyza66;
+package com.tyza66.user;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
