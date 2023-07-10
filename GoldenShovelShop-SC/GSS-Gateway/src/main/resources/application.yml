@@ -29,9 +29,7 @@ spring:
         server-addr: localhost:8848
         username: nacos
         password: nacos
-    sentinel:
-      transport:
-        dashboard: 127.0.0.1:9090
+
           #scg:
         #fallback:
         #mode: response

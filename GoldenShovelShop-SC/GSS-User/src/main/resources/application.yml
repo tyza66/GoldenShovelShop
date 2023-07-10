@@ -19,8 +19,10 @@ spring:
             server-addr: localhost:8848
             username: nacos
             password: nacos
+            groupId: DEFAULT_GROUP
             dataId: user-sentinel-flow-rules
             rule-type: flow
+      web-context-unify: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/gssuser?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
