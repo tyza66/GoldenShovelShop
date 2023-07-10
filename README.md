@@ -8,8 +8,8 @@
 ##### 设计图
 
 ##### 使用技术
-环境：Java8、Node、React、MySQL、Nacos、Docker、RocketMQ
-后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token、Knife4j、MyBatis、MyBatisPlus、RocketMQ、Hutool
+环境：Java8、Node、React、MySQL、Nacos、Docker、RocketMQ、Sentinel
+后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token、Knife4j、MyBatis、MyBatisPlus、RocketMQ、Hutool、Sentinel
 前端技术栈：React、Ant Design、Axios、React Router
 
 ##### Nacos注册中心

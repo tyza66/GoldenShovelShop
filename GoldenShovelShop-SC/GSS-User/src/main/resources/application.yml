@@ -1,0 +1,14 @@
+server:
+  port: 9601
+
+spring:
+  application:
+    name: GSS-User
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+
+

@@ -21,6 +21,7 @@
         <spring.cloud.version>Hoxton.SR8</spring.cloud.version>
     </properties>
     <dependencies>
+
         <!-- springboot基本启动场景 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
