@@ -1,0 +1,26 @@
+docker run -d -p 9876:9876 -v D:/code_env/RocketMQ/namesrv/logs:/root/logs -v D:/code_env/RocketMQ/namesrv/store:/root/store --name rmqnamesrv -e "MAX_POSSIBLE_HEAP=100000000" rocketmqinc/rocketmq sh mqnamesrv
+
+docker run -d -p 10911:10911 -p 10909:10909 -v D:/code_env/RocketMQ/broker/logs:/root/logs -v   D:/code_env/RocketMQ/broker/store:/root/store -v D:/code_env/RocketMQ/broker/conf/broker.conf:/opt/rocketmq/conf/broker.conf --name rmqbroker --link rmqnamesrv:namesrv -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq/conf/broker.conf
+
+docker run -d   --name rmqbroker --link rmqnamesrv:namesrv -e    "JAVA_OPTS=-Drocketmq.config.namesrvAddr=namesrv:9876 -Drocketmq.config.isVIPChannel=false" -p  9999:8080 -t  --name rmConsole styletang/rocketmq-console-ng
+
+docker run -d --restart=always --name rmqadmin -e "JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" -p 9999:8080 pangliang/rocketmq-console-ng
+
+--privileged=true
+
+--privileged
+
+docker run -d --name rocketmq-dashboard -e "JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:9876" -p 9999:8080 -t apacherocketmq/rocketmq-dashboard:latest
+
+curl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py -o /usr/bin/systemctl && chmod +x /usr/bin/systemctl
+
+docker pull rocketmqinc/rocketmq
+
+docker run -d -p 9876:9876 --name rmqnamesrv rocketmqinc/rocketmq sh mqnamesrv
+
+docker run -d -p 10911:10911 -p 10909:10909 --name rmqbroker --link rmqnamesrv:namesrv -e "NAMESRV_ADDR=namesrv:9876" rocketmqinc/rocketmq sh mqbroker -n namesrv:9876
+
+docker run -d -p 8080:8080 --name rmqconsole --link rmqnamesrv:namesrv -e "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" styletang/rocketmq-console-ng
+
+
+
