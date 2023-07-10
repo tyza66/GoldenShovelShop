@@ -15,8 +15,8 @@ import org.checkerframework.checker.units.qual.A;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    Integer id;
-    String username;
-    String password;
-    Integer power;
+    private Integer id;
+    private String username;
+    private String password;
+    private Integer power;
 }

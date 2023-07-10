@@ -1,5 +1,7 @@
 package com.tyza66.user.service;
 
+import com.tyza66.user.pojo.User;
+
 /**
  * Author: tyza66
  * Date: 2023/7/10 14:59
@@ -7,5 +9,5 @@ package com.tyza66.user.service;
  **/
 
 public interface UserService{
-    boolean login(String username,String password);
+    User login(String username, String password);
 }

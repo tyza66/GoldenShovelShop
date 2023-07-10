@@ -1,10 +1,16 @@
 package com.tyza66.user.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.tyza66.user.pojo.User;
+import com.tyza66.user.service.UserService;
+import com.tyza66.user.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author: tyza66
@@ -16,10 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    UserServiceImpl userService;
+
     @ApiOperation("测试连通性")
     @GetMapping("/test")
-    public String test(){
-        return "ok";
+    public JSON test(){
+        JSONObject obj = JSONUtil.createObj();
+        obj.set("code",200);
+        obj.set("msg","ok");
+        return obj;
+    }
+
+    @ApiOperation("用户登录")
+    @PostMapping("/login")
+    public JSON login(@RequestBody User user){
+        JSONObject obj = JSONUtil.createObj();
+        User login = userService.login(user.getUsername(), user.getPassword());
+        if(login!=null){
+            obj.set("code","200");
+            obj.set("msg","登陆成功");
+            StpUtil.login(login.getPower());
+        }else {
+            obj.set("code","202");
+            obj.set("msg","登陆失败");
+        }
+        return obj;
     }
 
 }
