@@ -3,4 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tyza66.user.mapper.UserMapper">
 
+    <select id="login" resultType="com.tyza66.user.pojo.User">
+        select * from `user` where username=#{username} and password=#{password}
+    </select>
 </mapper>
