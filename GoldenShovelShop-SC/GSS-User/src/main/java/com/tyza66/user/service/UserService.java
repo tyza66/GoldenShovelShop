@@ -10,4 +10,8 @@ import com.tyza66.user.pojo.User;
 
 public interface UserService{
     User login(String username, String password);
+
+    User searchByUsername(String username);
+
+    User register(String username,String password, Integer power);
 }

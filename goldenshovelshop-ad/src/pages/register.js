@@ -1,47 +1,44 @@
-import '../styles/login.css';
+import '../styles/register.css';
 import React, { useEffect } from 'react';
-import { Button, Checkbox, Form, Input, notification } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 import request from '../utils/request'
 
-function Login() {
+function Register() {
     const [api, contextHolder] = notification.useNotification();
-    var localUsername = "", localPassword = ""
-    var username = window.sessionStorage.getItem("username");
-        var password = window.sessionStorage.getItem("password");
-        if (username != null && password != null) {
-            localUsername = username
-            localPassword = password
-        }else{
-            window.sessionStorage.setItem("username", "")
-            window.sessionStorage.setItem("password", "")
-        }
     useEffect(() => {
-        
-    })
 
+    })
+    
     const openNotification = (info) => {
-        if (info == "success") {
+        if(info == "success") {
             api['success']({
-                message: `登录成功`,
+                message: `注册成功`,
                 description: <span>正在跳转</span>,
                 info,
             });
-        } else if (info == "error1") {
+        }else if(info == "error1") {
             api['error']({
-                message: `登陆失败`,
+                message: `注册失败`,
                 description: <span>请检查你的账号和密码</span>,
                 info,
             });
-        } else if (info == "error2") {
+        }else if(info == "error2"){
             api['error']({
-                message: `登陆失败`,
+                message: `注册失败`,
                 description: <span>请检查你的网络情况</span>,
                 info,
             });
-        } else if (info == "error3") {
+        }
+        else if(info == "error3"){
             api['error']({
-                message: `登陆失败`,
+                message: `注册失败`,
                 description: <span>您的操作过于频繁</span>,
+                info,
+            });
+        }else if(info == "error4"){
+            api['error']({
+                message: `注册失败`,
+                description: <span>两次输入的密码不一致</span>,
                 info,
             });
         }
@@ -49,49 +46,46 @@ function Login() {
 
     const onFinish = (values) => {
         console.log('Success:', values);
-        request.post("/user/login", { "username": values.username, "password": values.password })
+        if(values.password != values.repassword){
+            openNotification('error4')
+            return;
+        }
+        request.post("/user/register", { "username": values.username, "password": values.password })
             .then(response => {
-                if (response.data.code == 200) {
+                if(response.data.code == 200){
                     openNotification('success')
-                    if (values.remember == true) {
-                        window.sessionStorage.setItem("username", values.username)
-                        window.sessionStorage.setItem("password", values.password)
-                    }else{
-                        window.sessionStorage.setItem("username", "")
-                        window.sessionStorage.setItem("password", "")
-                    }
-                    window.location.href = "../"
-                } else if(response.data.code == 202) {
+                    window.location.href = "../#/login"
+                }else if(response.data.code == 202){
                     openNotification('error1')
-                }else if(response.data.code == 100) {
+                }else if(response.data.code == 100){
                     openNotification('error3')
                 }
             }).catch(error => {
-                console.log(error)
+                //console.log(error)
                 openNotification('error2')
             })
     };
-
+    
     const onFinishFailed = (errorInfo) => {
         //console.log('Failed:', errorInfo);
     };
 
-    const register = () => {
-        window.location.href = "./#/register"
+    const login = ()=>{
+        window.location.href = "../#/login"
     }
 
     return (
         <>
             <div className='context'>
                 {contextHolder}
-                <div className='head'><h2>用户登录</h2></div>
+                <div className='head'><h2>用户注册</h2></div>
                 <div className='main'>
                     <Form
                         name="basic"
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         style={{ maxWidth: 600 }}
-                        initialValues={{ remember: false, username: localUsername, password: localPassword }}
+                        initialValues={{ remember: true }}
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
@@ -112,16 +106,20 @@ function Login() {
                             <Input.Password />
                         </Form.Item>
 
-                        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                            <Checkbox>记住我</Checkbox>
+                        <Form.Item
+                            label="确认密码"
+                            name="repassword"
+                            rules={[{ required: true, message: '请再次输入密码!' }]}
+                        >
+                            <Input.Password />
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
-                                登录
-                            </Button>
-                            <Button type="primary" htmlType="button" className='register' onClick={register}>
                                 注册
+                            </Button>
+                            <Button type="primary" htmlType="button" className='login' onClick={login}>
+                                登录
                             </Button>
                         </Form.Item>
                     </Form>
@@ -131,4 +129,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

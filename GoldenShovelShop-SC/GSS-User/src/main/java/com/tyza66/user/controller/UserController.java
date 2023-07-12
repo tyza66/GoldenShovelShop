@@ -6,7 +6,6 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.tyza66.user.pojo.User;
-import com.tyza66.user.service.UserService;
 import com.tyza66.user.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -52,5 +51,21 @@ public class UserController {
         }
         return obj;
     }
+
+    @ApiOperation("用户注册")
+    @PostMapping("/register")
+    public JSON register(@RequestBody User user){
+        JSONObject obj = JSONUtil.createObj();
+        User register = userService.register(user.getUsername(), user.getPassword(), 0);
+        if(register!=null){
+            obj.set("code","200");
+            obj.set("msg","注册成功");
+        }else {
+            obj.set("code","202");
+            obj.set("msg","注册失败");
+        }
+        return obj;
+    }
+
 
 }
