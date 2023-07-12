@@ -99,4 +99,9 @@ public class UserCheckController implements UserCheckControllerTemplate {
     public boolean hasRole(String role) {
         return StpUtil.hasRole(role);
     }
+
+    @Override
+    public String getNowUsername() {
+        return ((User) StpUtil.getSession().get("user")).getUsername();
+    }
 }

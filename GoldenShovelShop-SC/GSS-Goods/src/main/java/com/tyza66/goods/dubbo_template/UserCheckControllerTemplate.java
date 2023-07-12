@@ -1,4 +1,4 @@
-package com.tyza66.user.dubbo_template;
+package com.tyza66.goods.dubbo_template;
 
 import cn.hutool.json.JSON;
 
