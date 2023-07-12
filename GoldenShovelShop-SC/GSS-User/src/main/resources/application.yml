@@ -67,3 +67,12 @@ sa-token:
   is-log: true
   check-same-token: true
 
+dubbo:
+  scan:
+    base-packages: com.tyza66.user.controller
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://127.0.0.1:8848
+

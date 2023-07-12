@@ -11,6 +11,14 @@ spring:
           uri: lb://GSS-User #需要转发的地址 lb就是使用nacos本地负载均衡策略
           predicates: #断言规则 用于路由规则的匹配
             - Path=/user/**
+        - id: goods_route
+          uri: lb://GSS-Goods
+          predicates:
+            - Path=/goods/**
+        - id: recharge_route
+          uri: lb://GSS-Recharge
+          predicates:
+            - Path=/recharge/**
       globalcors:
         add-to-simple-url-handler-mapping: true
         cors-configurations:
