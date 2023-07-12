@@ -18,5 +18,5 @@ public class Recharge {
     String topic;
     String traceno;
     Double mount;
-
+    Integer status;
 }

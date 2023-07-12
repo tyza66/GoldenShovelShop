@@ -4,8 +4,11 @@ import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.tyza66.recharge.dubbo_template.UseraccountControllerTemplate;
 import com.tyza66.recharge.pojo.AliPay;
+import com.tyza66.recharge.service.RechargeService;
+import com.tyza66.recharge.service.impl.RechargeServiceImpl;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +28,11 @@ public class AliPayController {
    @DubboReference(check = false)
     private UseraccountControllerTemplate useraccountControllerTemplate;
 
+   @Autowired
+    private RechargeServiceImpl rechargeService;
+
     //这里使用的easy版本的 传过来的标题好像不能中文 要修复这个问题可以使用完整版的sdk
-    @GetMapping("/pay") // &subject=xxx&traceNo=xxx&totalAmount=xxx
+    @GetMapping("/pay") // &subject=xxx&traceNo=xxx&totalAmount=xxx subject传递的是用户名
     public String pay(@RequestBody AliPay aliPay) {
         AlipayTradePagePayResponse response;
         try {
@@ -37,18 +43,21 @@ public class AliPayController {
             System.err.println("调用遭遇异常，原因：" + e.getMessage());
             throw new RuntimeException(e.getMessage(), e);
         }
+
+        //跳转之前，直接调用充值成功的方法
+        this.paySuccess(aliPay.getSubject(),aliPay.getTraceNo(),aliPay.getTotalAmount());
         return response.getBody();
     }
 
     //直接默认成功的方法
     @GlobalTransactional //分布式事务定义
-    public String paySuccess(String traceNo, double totalAmount) {
+    public String paySuccess(String username,String traceNo, double totalAmount) {
         //创建充值订单
-
+        rechargeService.createRecharge(username+"支付宝充值"+totalAmount+"金币", traceNo, totalAmount);
         //充值订单状态改为成功
-
+        rechargeService.changeStatusOK(traceNo);
         //给用户加钱
-        useraccountControllerTemplate.addMoney(traceNo, totalAmount);
+        useraccountControllerTemplate.addMoney(username, totalAmount);
         return "success";
     }
 

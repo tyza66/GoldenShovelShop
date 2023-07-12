@@ -7,4 +7,7 @@ package com.tyza66.recharge.service;
  **/
 
 public interface RechargeService {
+    void createRecharge(String topic, String traceno, Double mount);
+
+    void changeStatusOK(String traceno);
 }
