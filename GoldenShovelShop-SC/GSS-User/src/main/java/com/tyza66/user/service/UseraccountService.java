@@ -7,7 +7,7 @@ package com.tyza66.user.service;
  **/
 
 public interface UseraccountService {
-    void addMoney(Integer id, Double money);
-    void reduceMoney(Integer id, Double money);
-    Double getMoney(Integer id);
+    double addMoney(String username, Double money);
+    double reduceMoney(String username, Double money);
+    Double getMoney(String username);
 }
