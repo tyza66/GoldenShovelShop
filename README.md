@@ -22,6 +22,8 @@
 - React(前端页面)：3000
 - GSS-Gateway(Gateway网关)：9090
 - GSS-User(用户服务)：9601
+- GSS-Goods(商品服务)：9602
+- - GSS-Goods(活动服务)：9603
 
 
 ##### 文件对应列表

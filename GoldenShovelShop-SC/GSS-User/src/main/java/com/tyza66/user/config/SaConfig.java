@@ -24,17 +24,10 @@ public class SaConfig implements StpInterface {
         List<String> list = new ArrayList<String>();
         switch ((String) loginId) {
             case "0":
-                list.add("all");
+                list.add("search");
                 break;
             case "1":
-                list.add("admin");
-                list.add("user");
-                break;
-            case "2":
-                list.add("user");
-                break;
-            case "3":
-                list.add("ban");
+                list.add("all");
                 break;
         }
         return list;
@@ -49,19 +42,11 @@ public class SaConfig implements StpInterface {
         List<String> list = new ArrayList<String>();
         switch ((String) loginId) {
             case "0":
-                list.add("super-admin");
-                list.add("admin");
                 list.add("user");
                 break;
             case "1":
                 list.add("admin");
                 list.add("user");
-                break;
-            case "2":
-                list.add("user");
-                break;
-            case "3":
-                list.add("ban");
                 break;
         }
         return list;
