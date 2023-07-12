@@ -5,6 +5,9 @@ spring:
     name: GSS-gateway
   #gateway配置
   cloud:
+    alibaba:
+      seata:
+        txServiceGroup: my_test_tx_group #配置事务分组
     gateway:
       routes: #路由规则
         - id: user_route
@@ -37,8 +40,27 @@ spring:
         server-addr: localhost:8848
         username: nacos
         password: nacos
+        namespace: public
+        ephemeral: true
 
           #scg:
         #fallback:
         #mode: response
         #response-body: "{code:'',message:''}"
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848 #seata所在的nacos地址
+      application: seata-server #seata的服务名
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP #seata所在的组
+  config: #配置seata的配置中心 可以读取一些关于seata client的一些配置
+    type: nacos
+    nacos:
+      serverAddr: localhost:8848 #seata所在的nacos地址
+      application: seata-server #seata的服务名
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP #seata所在的组
