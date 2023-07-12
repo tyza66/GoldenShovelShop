@@ -1,5 +1,6 @@
 import { createHashRouter, Navigate } from 'react-router-dom'
 import Home from '../pages/home'
+import Login from '../pages/login'
 
 export const globalRouters = createHashRouter([
     {
@@ -9,6 +10,10 @@ export const globalRouters = createHashRouter([
     {
         path: '/home',
         element: <Home />,
+    },
+    {
+        path: '/login',
+        element: <Login />,
     },
     {
         path: '*',
