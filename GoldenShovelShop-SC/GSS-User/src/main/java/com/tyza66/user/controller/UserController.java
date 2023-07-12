@@ -36,6 +36,7 @@ public class UserController {
         return obj;
     }
 
+    //登录
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public JSON login(@RequestBody User user){
@@ -45,6 +46,7 @@ public class UserController {
             obj.set("code","200");
             obj.set("msg","登陆成功");
             StpUtil.login(login.getPower());
+            StpUtil.getSession().set("user", login);
         }else {
             obj.set("code","202");
             obj.set("msg","登陆失败");
@@ -52,6 +54,7 @@ public class UserController {
         return obj;
     }
 
+    //注册（无验证码）
     @ApiOperation("用户注册")
     @PostMapping("/register")
     public JSON register(@RequestBody User user){
@@ -67,5 +70,14 @@ public class UserController {
         return obj;
     }
 
-
+    //注销
+    @ApiOperation("用户注销")
+    @GetMapping("/logout")
+    public JSON logout(){
+        JSONObject obj = JSONUtil.createObj();
+        StpUtil.logout();
+        obj.set("code","200");
+        obj.set("msg","注销成功");
+        return obj;
+    }
 }
