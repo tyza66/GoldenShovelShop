@@ -17,7 +17,7 @@ function Login() {
         }
     useEffect(() => {
         
-    })
+    },[])
 
     const openNotification = (info) => {
         if (info == "success") {
