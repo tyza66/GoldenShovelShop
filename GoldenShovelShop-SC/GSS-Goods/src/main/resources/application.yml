@@ -74,7 +74,7 @@ sa-token:
 
 dubbo:
   scan:
-    base-packages: com.tyza66.recharge.controller
+    base-packages: com.tyza66.goods.controller
   protocol:
     name: dubbo
     port: -1

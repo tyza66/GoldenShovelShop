@@ -1,4 +1,4 @@
-package com.tyza66.recharge.dubbo_template;
+package com.tyza66.user.dubbo_template;
 
 /**
  * Author: tyza66

@@ -2,9 +2,8 @@ package com.tyza66.recharge.controller;
 
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
-import com.tyza66.recharge.dubbo_template.UseraccountControllerTemplate;
+import com.tyza66.user.dubbo_template.UseraccountControllerTemplate;
 import com.tyza66.recharge.pojo.AliPay;
-import com.tyza66.recharge.service.RechargeService;
 import com.tyza66.recharge.service.impl.RechargeServiceImpl;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -33,7 +32,7 @@ public class AliPayController {
 
     //这里使用的easy版本的 传过来的标题好像不能中文 要修复这个问题可以使用完整版的sdk
     @GetMapping("/pay") // &subject=xxx&traceNo=xxx&totalAmount=xxx subject传递的是用户名
-    public String pay(@RequestBody AliPay aliPay) {
+    public String pay(AliPay aliPay) {
         AlipayTradePagePayResponse response;
         try {
             //  发起API调用（以创建当面付收款二维码为例）
@@ -58,6 +57,7 @@ public class AliPayController {
         rechargeService.changeStatusOK(traceNo);
         //给用户加钱
         useraccountControllerTemplate.addMoney(username, totalAmount);
+        int i = 1/0;
         return "success";
     }
 
