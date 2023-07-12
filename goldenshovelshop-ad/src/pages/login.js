@@ -3,21 +3,42 @@ import React, { useEffect } from 'react';
 import { Button, Checkbox, Form, Input, notification } from 'antd';
 import request from '../utils/request'
 
+
 function Login() {
     const [api, contextHolder] = notification.useNotification();
     var localUsername = "", localPassword = ""
     var username = window.sessionStorage.getItem("username");
-        var password = window.sessionStorage.getItem("password");
-        if (username != null && password != null) {
-            localUsername = username
-            localPassword = password
-        }else{
-            window.sessionStorage.setItem("username", "")
-            window.sessionStorage.setItem("password", "")
-        }
+    var password = window.sessionStorage.getItem("password");
+    if (username != null && password != null) {
+        localUsername = username
+        localPassword = password
+    } else {
+        window.sessionStorage.setItem("username", "")
+        window.sessionStorage.setItem("password", "")
+    }
     useEffect(() => {
-        
-    },[])
+
+    }, [])
+
+    function setCookie(key, value) {
+        // 构建新的cookie字符串  
+        var cookie = key + '=' + value + ';';
+        // 将新cookie字符串添加到现有的cookie字符串中  
+        var existingCookies = document.cookie.split(';');
+        for (var i = 0; i < existingCookies.length; i++) {
+            if (existingCookies[i].trim().indexOf(key) === 0) {
+                // 如果找到指定的cookie键，则用新的值替换它  
+                existingCookies[i] = cookie;
+                break;
+            }
+        }
+        //如果不存在就在后面直接拼接
+        if (i == existingCookies.length) {
+            existingCookies.push(cookie)
+        }
+        // 将修改后的cookie字符串重新组合并设置回document.cookie属性  
+        document.cookie = existingCookies.join('');
+    }
 
     const openNotification = (info) => {
         if (info == "success") {
@@ -52,18 +73,21 @@ function Login() {
         request.post("/user/login", { "username": values.username, "password": values.password })
             .then(response => {
                 if (response.data.code == 200) {
+                    setCookie("satoken", response.data.tokenInfo.tokenValue)
                     openNotification('success')
                     if (values.remember == true) {
                         window.sessionStorage.setItem("username", values.username)
                         window.sessionStorage.setItem("password", values.password)
-                    }else{
+                    } else {
                         window.sessionStorage.setItem("username", "")
                         window.sessionStorage.setItem("password", "")
                     }
-                    window.location.href = "../"
-                } else if(response.data.code == 202) {
+                    setTimeout(() => {
+                        window.location.href = "../"
+                    }, 100)
+                } else if (response.data.code == 202) {
                     openNotification('error1')
-                }else if(response.data.code == 100) {
+                } else if (response.data.code == 100) {
                     openNotification('error3')
                 }
             }).catch(error => {

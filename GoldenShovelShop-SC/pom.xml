@@ -14,6 +14,7 @@
         <module>GSS-User</module>
         <module>GSS-Goods</module>
         <module>GSS-CouponMQHandler</module>
+        <module>GSS-Recharge</module>
     </modules>
 
     <properties>

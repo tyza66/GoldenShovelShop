@@ -16,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class Useraccount {
     Integer id;
     Double money;
-    Integer username;
+    String username;
 }

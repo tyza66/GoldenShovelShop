@@ -1,9 +1,9 @@
 server:
-  port: 9602
+  port: 9603
 
 spring:
   application:
-    name: GSS-Goods
+    name: GSS-Recharge
   cloud:
     nacos:
       discovery:
@@ -20,14 +20,9 @@ spring:
             username: nacos
             password: nacos
             groupId: DEFAULT_GROUP
-            dataId: goods-sentinel-flow-rules
+            dataId: recharge-sentinel-flow-rules
             rule-type: flow
       web-context-unify: false
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gssgoods?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
-    username: root
-    password: 123456
   redis:
     # Redis数据库索引（默认为0）
     database: 1

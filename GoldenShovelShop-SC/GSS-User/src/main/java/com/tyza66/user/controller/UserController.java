@@ -1,5 +1,6 @@
 package com.tyza66.user.controller;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
@@ -46,6 +47,8 @@ public class UserController {
             obj.set("code","200");
             obj.set("msg","登陆成功");
             StpUtil.login(login.getPower());
+            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+            obj.set("tokenInfo",tokenInfo);
             StpUtil.getSession().set("user", login);
         }else {
             obj.set("code","202");
