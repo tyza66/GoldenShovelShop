@@ -28,7 +28,7 @@
 
 ##### 使用技术
 - 环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
-- 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce、
+- 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce
 - 前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
 
 ##### Nacos注册中心
@@ -53,7 +53,7 @@
 - 文档：文档
 
 ##### 本地复现
-- 安装好Spring Boot全家桶需要的环境（Java、Maven、Seata、Sentinel、Nacos），并且保证环境版本之间相互配套，运行所有服务
+- 安装好Spring Boot全家桶需要的环境（Java、Maven、Seata、Sentinel、Nacos），并且保证环境版本之间相互配套，部署和配置好各个环境，修改各个服务中的一些配置，运行所有服务
 - npm i 初始化前端Node项目，运行
 - 进入localhost:3000访问前端页面
 
