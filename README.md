@@ -22,6 +22,9 @@
 <details><summary>充值成功</summary>
 <img src="./文档/图片/充值成功.png"/>
 </details>
+<details><summary>注册中心</summary>
+<img src="./文档/图片/注册中心.png"/>
+</details>
 
 ##### 使用技术
 环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
