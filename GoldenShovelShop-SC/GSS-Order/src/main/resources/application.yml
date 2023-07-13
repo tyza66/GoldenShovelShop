@@ -1,9 +1,9 @@
 server:
-  port: 9602
+  port: 9604
 
 spring:
   application:
-    name: GSS-Goods
+    name: GSS-Order
   cloud:
     alibaba:
       seata:

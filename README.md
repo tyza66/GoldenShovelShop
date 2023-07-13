@@ -2,17 +2,31 @@
 ### 金铲子商店
 - 一个简单的*Spring Cloud Alibaba全家桶*微服务项目
 - 实现充值式商城，用户可以通过充值金币来购买商品
-- 实现用户、商品、订单、支付、库存、积分、优惠券等模块
+- 实现用户、商品、订单、支付、库存、优惠券等模块
 - 实现商品评论区，用户可以对商品进行评论
-- 分布式后端，完全前后端分离，网关解决跨域
+- 分布式后端，完全前后端分离，使用网关解决负载均衡和跨域问题
 - 用户密码使用sha1加密
 
 ##### 设计图
 
+##### 演示图
+<details><summary>用户登录</summary>
+<img src="./文档/图片/用户登录.png"/>
+</details>
+<details><summary>用户注册</summary>
+<img src="./文档/图片/用户注册.png"/>
+</details>
+<details><summary>用户充值</summary>
+<img src="./文档/图片/用户充值.png"/>
+</details>
+<details><summary>充值成功</summary>
+<img src="./文档/图片/充值成功.png"/>
+</details>
+
 ##### 使用技术
 环境：Java8、Node、React、MySQL、Nacos、Docker、RocketMQ、Sentinel、Seata、Redis
 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce、
-前端技术栈：React、Ant Design、Axios、React Router
+前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
 
 ##### Nacos注册中心
 - 使用MySql数据库实现配置持久化
@@ -26,6 +40,10 @@
 - GSS-User(用户服务)：9601
 - GSS-Goods(商品服务)：9602
 - GSS-Recharge(充值服务)：9603
+- GSS-Order(订单管理)：9604
+- GSS-Gift(活动管理)：9605
+- GSS-Comment(评论管理)：9606
+- 
 
 
 ##### 文件对应列表
