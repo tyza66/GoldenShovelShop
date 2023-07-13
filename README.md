@@ -5,7 +5,7 @@
 - 实现用户、商品、订单、支付、库存、优惠券等模块
 - 实现商品评论区，用户可以对商品进行评论
 - 分布式后端，完全前后端分离，使用网关解决负载均衡和跨域问题
-- 用户密码使用sha1加密
+- 用户密码使用SHA1加密
 
 ##### 设计图
 
@@ -24,7 +24,7 @@
 </details>
 
 ##### 使用技术
-环境：Java8、Node、React、MySQL、Nacos、Docker、RocketMQ、Sentinel、Seata、Redis
+环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce、
 前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
 
@@ -43,8 +43,6 @@
 - GSS-Order(订单管理)：9604
 - GSS-Gift(活动管理)：9605
 - GSS-Comment(评论管理)：9606
-- 
-
 
 ##### 文件对应列表
 - 微服务后端：GoldenShovelShop-SC
@@ -52,8 +50,16 @@
 - 文档：文档
 
 ##### 本地复现
+- 安装好Spring Boot全家桶需要的环境（Java、Maven、Seata、Sentinel、Nacos），并且保证环境版本之间相互配套，运行所有服务
+- npm i 初始化前端Node项目，运行
+- 进入localhost:3000访问前端页面
 
 ##### Q&A
+- Q：怎么保证充值服务的安全性？ A：使用Seata分布式事务，保证充值服务的原子性
+- Q：怎么保证用户密码的安全性？ A：保存的密码使用SHA1加密后进行保存
+- Q：怎么保证账户的安全性？ A：使用Sa-Token进行用户的登录验证
+- Q：怎么实现的全局登录状态验证？ A：使用Sa-Token集成Redis和Sa-Token继承Dubbo，并且遵循Sa-Token的前后端分离写法，手动保存cookie，并且手动向请求头中加入token，并且实现分布式Session的功能
+- Q：怎么处理抢优惠券被疯抢的高并发场景？ A：用户点击领取优惠券后，先让用户界面进行等待加载，我们先将领取优惠券的操作提交到MQ中，再由MQ异步按顺序处理，同时用户端进行不断的检查优惠券是否领取成功，如果成功则弹出成功信息，如果失败则弹出失败信息
 
 ##### 用户权限代码表
 - 普通用户：0
