@@ -27,9 +27,9 @@
 </details>
 
 ##### 使用技术
-环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
-后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce、
-前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
+- 环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
+- 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce、
+- 前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
 
 ##### Nacos注册中心
 - 使用MySql数据库实现配置持久化
