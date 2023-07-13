@@ -1,4 +1,4 @@
-package com.tyza66.order.config;
+package com.tyza66.comment.config;
 
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import org.springframework.context.annotation.Configuration;

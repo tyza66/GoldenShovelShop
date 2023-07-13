@@ -1,4 +1,4 @@
-package com.tyza66.order.config;
+package com.tyza66.gift.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

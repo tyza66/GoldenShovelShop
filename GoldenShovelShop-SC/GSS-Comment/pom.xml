@@ -7,11 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.tyza66.order</groupId>
-    <artifactId>GSS-Order</artifactId>
+    <groupId>com.tyza66.comment</groupId>
+    <artifactId>GSS-Comment</artifactId>
     <packaging>jar</packaging>
 
-    <name>GSS-Order</name>
+    <name>GSS-Comment</name>
     <url>http://maven.apache.org</url>
 
     <properties>

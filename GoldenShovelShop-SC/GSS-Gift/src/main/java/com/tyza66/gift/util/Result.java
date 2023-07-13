@@ -1,4 +1,4 @@
-package com.tyza66.order.util;
+package com.tyza66.gift.util;
 
 /**
  * Author: tyza66

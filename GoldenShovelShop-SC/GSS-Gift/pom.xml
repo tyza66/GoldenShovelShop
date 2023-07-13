@@ -7,11 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.tyza66.order</groupId>
-    <artifactId>GSS-Order</artifactId>
+    <groupId>com.tyza66.gift</groupId>
+    <artifactId>GSS-Gift</artifactId>
     <packaging>jar</packaging>
 
-    <name>GSS-Order</name>
+    <name>GSS-Gift</name>
     <url>http://maven.apache.org</url>
 
     <properties>

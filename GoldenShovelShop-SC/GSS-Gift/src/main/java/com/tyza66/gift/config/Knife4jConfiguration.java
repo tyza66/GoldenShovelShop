@@ -1,4 +1,4 @@
-package com.tyza66.order.config;
+package com.tyza66.gift.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

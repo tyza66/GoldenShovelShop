@@ -1,11 +1,9 @@
-package com.tyza66.goods;
+package com.tyza66.comment;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.swing.*;
 
 /**
  * Hello world!
@@ -13,12 +11,12 @@ import javax.swing.*;
  */
 
 @SpringBootApplication
-@MapperScan("com.tyza66.goods.mapper")
+@MapperScan("com.tyza66.comment.mapper")
 @EnableDubbo
-public class GSS_GoodsApplication
+public class GSS_CommentApplication
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(GSS_GoodsApplication.class, args);
+        SpringApplication.run(GSS_CommentApplication.class, args);
     }
 }
