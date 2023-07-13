@@ -10,6 +10,7 @@ import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -45,9 +46,12 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
     @GlobalTransactional
     public void OK96(String topic, Integer tranceno, Double amount) {
         System.out.println("giaogiao"+RootContext.getXID());
+        //床架充值订单
         recharge(topic, tranceno, amount);
         //不知道为啥 分布式事务回滚到这个地方就不滚了
+        //直接将充值订单状态修改为成功
         makeStatusOk(tranceno);
+        //给用户加钱
         useraccountService.addMoney(topic,amount);
         int err = 1/0;
     }
