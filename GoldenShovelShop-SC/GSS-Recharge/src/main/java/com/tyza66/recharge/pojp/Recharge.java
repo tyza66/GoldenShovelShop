@@ -1,4 +1,4 @@
-package com.tyza66.recharge.pojo;
+package com.tyza66.recharge.pojp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Author: tyza66
- * Date: 2023/7/12 14:49
+ * Date: 2023/7/13 10:25
  * Github: https://github.com/tyza66
  **/
 
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Recharge {
     Integer id;
     String topic;
-    String traceno;
+    Integer traceno;
     Double amount;
     Integer status;
 }

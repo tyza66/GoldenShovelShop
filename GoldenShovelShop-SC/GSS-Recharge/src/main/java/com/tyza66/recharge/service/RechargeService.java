@@ -2,12 +2,14 @@ package com.tyza66.recharge.service;
 
 /**
  * Author: tyza66
- * Date: 2023/7/12 15:19
+ * Date: 2023/7/13 10:28
  * Github: https://github.com/tyza66
  **/
 
 public interface RechargeService {
-    void createRecharge(String topic, String traceno, Double mount);
+    public void recharge(String topic,Integer tranceno,Double amount);
 
-    void changeStatusOK(String traceno);
+    public void makeStatusOk(Integer tranceno);
+
+    public void OK96(String topic, Integer tranceno, Double amount);
 }

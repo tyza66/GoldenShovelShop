@@ -53,7 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUsername(username);
         user.setPassword(password);
         user.setPower(power);
-        useraccountMapper.insert(new Useraccount(0, 0.0, user.getId()));
+        useraccountMapper.insert(new Useraccount(0, 0.0, username));
         baseMapper.insert(user);
         return user;
     }

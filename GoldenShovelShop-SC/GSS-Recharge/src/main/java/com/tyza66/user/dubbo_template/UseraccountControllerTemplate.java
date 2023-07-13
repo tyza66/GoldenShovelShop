@@ -7,7 +7,7 @@ package com.tyza66.user.dubbo_template;
  **/
 
 public interface UseraccountControllerTemplate {
-    Double addMoney(String username, Double money);
-    Double reduceMoney(String username, Double money);
-    Double getMoney(String username);
+    public Double addMoney(String username, Double money);
+    public Double reduceMoney(String username, Double money);
+    public Double getMoney(String username);
 }

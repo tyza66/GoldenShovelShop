@@ -8,8 +8,6 @@ import cn.hutool.json.JSONUtil;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.tyza66.user.pojo.User;
 import com.tyza66.user.service.impl.UserServiceImpl;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
  * Github: https://github.com/tyza66
  **/
 
-@Api(tags = "用户模块")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -27,7 +24,6 @@ public class UserController {
     @Autowired
     UserServiceImpl userService;
 
-    @ApiOperation("测试连通性")
     @SentinelResource(value = "test", blockHandler = "blockAdd")
     @GetMapping("/test")
     public JSON test(){
@@ -38,7 +34,6 @@ public class UserController {
     }
 
     //登录
-    @ApiOperation("用户登录")
     @PostMapping("/login")
     public JSON login(@RequestBody User user){
         JSONObject obj = JSONUtil.createObj();
@@ -58,7 +53,6 @@ public class UserController {
     }
 
     //注册（无验证码）
-    @ApiOperation("用户注册")
     @PostMapping("/register")
     public JSON register(@RequestBody User user){
         JSONObject obj = JSONUtil.createObj();
@@ -74,7 +68,6 @@ public class UserController {
     }
 
     //注销
-    @ApiOperation("用户注销")
     @GetMapping("/logout")
     public JSON logout(){
         JSONObject obj = JSONUtil.createObj();

@@ -6,8 +6,6 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.tyza66.user.dubbo_template.UserCheckControllerTemplate;
 import com.tyza66.user.pojo.User;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
  * Github: https://github.com/tyza66
  **/
 
-@Api(tags = "用户检查")
 @RestController
 @RequestMapping("/user")
 @DubboService
 public class UserCheckController implements UserCheckControllerTemplate {
 
     //检查当前登录状态
-    @ApiOperation("检查当前登录状态")
     @GetMapping("/checkLogin")
     public JSON checkLogin(){
         JSONObject obj = JSONUtil.createObj();
@@ -43,7 +39,6 @@ public class UserCheckController implements UserCheckControllerTemplate {
     }
 
     //检查是否有权限
-    @ApiOperation("检查是否有权限")
     @GetMapping("/checkPower")
     public JSON checkPower(String power){
         JSONObject obj = JSONUtil.createObj();
@@ -65,7 +60,6 @@ public class UserCheckController implements UserCheckControllerTemplate {
     }
 
     //检查是否有角色
-    @ApiOperation("检查是否有角色")
     @GetMapping("/checkRole")
     public JSON checkRole(String role){
         JSONObject obj = JSONUtil.createObj();

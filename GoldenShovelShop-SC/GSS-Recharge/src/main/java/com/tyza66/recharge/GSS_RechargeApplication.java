@@ -6,17 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Hello world!
- *
- */
+ * Author: tyza66
+ * Date: 2023/7/13 10:21
+ * Github: https://github.com/tyza66
+ **/
 
 @SpringBootApplication
 @MapperScan("com.tyza66.recharge.mapper")
 @EnableDubbo
-public class GSS_RechargeApplication
-{
-    public static void main( String[] args )
-    {
-        SpringApplication.run(GSS_RechargeApplication.class, args);
+public class GSS_RechargeApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GSS_RechargeApplication.class,args);
     }
 }

@@ -42,7 +42,7 @@ public class MyBlockExceptionHandler implements BlockExceptionHandler {
             r = Result.error(104, "授权规则不通过");
         }
 
-        //返回ison数据
+        //返回json数据
         httpServletResponse.setStatus(500);
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);

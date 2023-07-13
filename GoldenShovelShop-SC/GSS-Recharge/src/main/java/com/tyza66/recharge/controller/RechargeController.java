@@ -1,0 +1,25 @@
+package com.tyza66.recharge.controller;
+
+import com.tyza66.recharge.service.impl.RechargeServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Author: tyza66
+ * Date: 2023/7/13 10:46
+ * Github: https://github.com/tyza66
+ **/
+
+@RestController
+@RequestMapping("/alipay")
+public class RechargeController {
+    @Autowired
+    RechargeServiceImpl rechargeService;
+    @GetMapping("/pay") //subject=admin&traceNo=55555&totalAmount=100
+    public String pay(String subject,Integer traceNo,Double totalAmount){
+        rechargeService.OK96(subject,traceNo,totalAmount);
+        return "giao";
+    }
+}
