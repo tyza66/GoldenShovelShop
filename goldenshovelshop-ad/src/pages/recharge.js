@@ -118,6 +118,12 @@ function Recharge() {
                 description: <span>请先登录</span>,
                 info,
             });
+        }else if (info == "error3") {
+            api['error']({
+                message: `充值失败`,
+                description: <span>您未选择充值的金额</span>,
+                info,
+            });
         }
     };
 
@@ -130,6 +136,10 @@ function Recharge() {
             if(je[i].checked) end = je[i].value;
         }
         console.log(end)
+        if(end==0){
+            openNotification("error3")
+            return;
+        }
         request.get("/user/checkLogin", {
             headers: {
                 "satoken": getCookie("satoken")
