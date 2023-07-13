@@ -111,6 +111,9 @@ function Rechargeok() {
     function home(){
         window.location.href = "/#/home"
     }
+    const login = ()=>{
+        window.location.href = "../#/login"
+    }
     return (
         <>
             <div className="context">
