@@ -116,7 +116,7 @@ function Rechargeok() {
             <div className="context">
                 <div className='header'>
                     <div className='title'>充值</div>
-                    <div className='user'>当前用户：{user.username} <Button type="link" onClick={logout}>注销</Button></div>
+                    <div className='user'>当前用户：{user.username} {(user.username=="未登录")?<Button type="link" onClick={login}>登录</Button>:<Button type="link" onClick={logout}>注销</Button>}</div>
                     <div className='money'>当前余额：{moeny}金币<Button type="link">充值</Button></div>
                 </div>
                 <div className='main'>

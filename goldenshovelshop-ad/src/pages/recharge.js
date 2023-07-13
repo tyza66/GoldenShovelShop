@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import request from '../utils/request'
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import '../styles/recharge.css';
 
 function Recharge() {
+    const [api, contextHolder] = notification.useNotification();
     const [user, setUser] = useState({ username: "未登录" })
     const [moeny, setMoeny] = useState("-")
     function getCookie(key) {
@@ -98,33 +99,95 @@ function Recharge() {
         })
     }, [])
 
-    function recharge(){
+    const openNotification = (info) => {
+        if (info == "success") {
+            api['success']({
+                message: `充值成功`,
+                description: <span>正在跳转</span>,
+                info,
+            });
+        } else if (info == "error1") {
+            api['error']({
+                message: `充值失败`,
+                description: <span>请检查你的网路状态</span>,
+                info,
+            });
+        } else if (info == "error2") {
+            api['error']({
+                message: `充值失败`,
+                description: <span>请先登录</span>,
+                info,
+            });
+        }
+    };
+
+    function recharge() {
         //点击充值按钮的时候执行的方法
         //直接调用沙箱支付环境并且传入参数 直接跳转成功
-        
+        var je = document.getElementsByName("r")
+        var end = 0;
+        for (let i = 0; i <je.length ; i++) {
+            if(je[i].checked) end = je[i].value;
+        }
+        console.log(end)
+        request.get("/user/checkLogin", {
+            headers: {
+                "satoken": getCookie("satoken")
+            }
+        }).then((response) => {
+            if (response.data.code == 200) {
+                if (response.data.code == 200) {
+                    //这个请求在后端并没有验证是谁执行的，但是因为别人代充的情况也可能存在，所以不验证了也行
+                    request.get("/alipay/pay?subject=" + response.data.user.username + "&traceNo=" + Date.parse(new Date()) + "&totalAmount=" + end)
+                        .then((res) => {
+                            if (res.data.code == 200) {
+                                openNotification("success")
+                                setTimeout(() => {
+                                    window.location.href = "/#/rechargeok"
+                                })
+                            }
+                        }).catch((err) => {
+                            console.log(err)
+                            openNotification("error1")
+                        })
+                }
+            }else if(response.data.code == 202){
+                openNotification("error2")
+            }
+        }).catch((err) => {
+            console.log(err)
+            openNotification("error2")
+        })
+
     }
+
+    function login(){
+        window.location.href="#/login"
+    }
+
     return (
         <>
+            {contextHolder}
             <div className="context">
                 <div className='header'>
                     <div className='title'>充值</div>
-                    <div className='user'>当前用户：{user.username} <Button type="link" onClick={logout}>注销</Button></div>
+                    <div className='user'>当前用户：{user.username}{(user.username=="未登录")?<Button type="link" onClick={login}>登录</Button>:<Button type="link" onClick={logout}>注销</Button>}</div>
                     <div className='money'>当前余额：{moeny}金币<Button type="link">充值</Button></div>
                 </div>
                 <div className='main'>
                     <div className='inmain'>
-                        <h2 class="title2">选择您想充值的金额</h2>
-                        <form class="form">
+                        <h2 className="title2">选择您想充值的金额</h2>
+                        <form className="form" id="jy">
                             <label for="01">100金币(￥96)</label>
-                            <input id="01" type="radio" name="r" value="1" />
+                            <input id="01" type="radio" name="r" value="100" />
                             <label for="01">200金币(￥196)</label>
-                            <input id="01" type="radio" name="r" value="2" />
+                            <input id="01" type="radio" name="r" value="200" />
                             <label for="02">500金币(￥396)</label>
-                            <input id="02" type="radio" name="r" value="3" />
+                            <input id="02" type="radio" name="r" value="500" />
                             <label for="03">10000金币(￥9600)</label>
-                            <input id="03" type="radio" name="r" value="4" />
+                            <input id="03" type="radio" name="r" value="10000" />
                             <label for="03">20000金币(￥10960)</label>
-                            <input id="03" type="radio" name="r" value="5" />
+                            <input id="03" type="radio" name="r" value="20000" />
                         </form>
                         <button className='b1' onClick={recharge}> 充值 </button>
                     </div>

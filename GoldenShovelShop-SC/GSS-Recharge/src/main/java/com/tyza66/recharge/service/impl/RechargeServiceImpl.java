@@ -27,7 +27,7 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
 
     @Override
     public void recharge(String topic, String tranceno, Double amount) {
-        Recharge recharge = new Recharge(0, topic, tranceno, amount, 0);
+        Recharge recharge = new Recharge(0, topic + "充值" + amount + "金币", tranceno, amount, 0);
         baseMapper.insert(recharge);
     }
 
@@ -44,14 +44,14 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
     @Override
     @GlobalTransactional
     public void OK96(String topic, String tranceno, Double amount) {
-        System.out.println("giaogiao"+RootContext.getXID());
+        System.out.println("giaogiao" + RootContext.getXID());
         //床架充值订单
         recharge(topic, tranceno, amount);
         //不知道为啥 分布式事务回滚到这个地方就不滚了
         //直接将充值订单状态修改为成功
         makeStatusOk(tranceno);
         //给用户加钱
-        useraccountService.addMoney(topic,amount);
+        useraccountService.addMoney(topic, amount);
         //int err = 1/0;
     }
 }
