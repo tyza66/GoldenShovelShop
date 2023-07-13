@@ -2,6 +2,7 @@ import { createHashRouter, Navigate } from 'react-router-dom'
 import Home from '../pages/home'
 import Login from '../pages/login'
 import Register from '../pages/register'
+import Recharge from '../pages/recharge'
 
 export const globalRouters = createHashRouter([
     {
@@ -19,6 +20,10 @@ export const globalRouters = createHashRouter([
     {
         path: '/register',
         element: <Register />,
+    },
+    {
+        path: '/recharge',
+        element: <Recharge />,
     },
     {
         path: '*',

@@ -53,6 +53,6 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
         makeStatusOk(tranceno);
         //给用户加钱
         useraccountService.addMoney(topic,amount);
-        int err = 1/0;
+        //int err = 1/0;
     }
 }
