@@ -21,7 +21,7 @@ public class RechargeController {
     @Autowired
     RechargeServiceImpl rechargeService;
     @GetMapping("/pay") //subject=admin&traceNo=55555&totalAmount=100
-    public JSON pay(String subject, Integer traceNo, Double totalAmount) {
+    public JSON pay(String subject, String traceNo, Double totalAmount) {
         JSONObject obj = JSONUtil.createObj();
         rechargeService.OK96(subject, traceNo, totalAmount);
         obj.set("code", "200");

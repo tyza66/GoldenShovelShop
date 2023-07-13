@@ -10,7 +10,6 @@ import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,13 +26,13 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
 
 
     @Override
-    public void recharge(String topic, Integer tranceno, Double amount) {
+    public void recharge(String topic, String tranceno, Double amount) {
         Recharge recharge = new Recharge(0, topic, tranceno, amount, 0);
         baseMapper.insert(recharge);
     }
 
     @Override
-    public void makeStatusOk(Integer tranceno) {
+    public void makeStatusOk(String tranceno) {
         QueryWrapper<Recharge> rechargeQueryWrapper = new QueryWrapper<>();
         rechargeQueryWrapper.eq("traceno", tranceno);
         List<Recharge> recharges = baseMapper.selectList(rechargeQueryWrapper);
@@ -44,7 +43,7 @@ public class RechargeServiceImpl extends ServiceImpl<RechargeMapper, Recharge> i
 
     @Override
     @GlobalTransactional
-    public void OK96(String topic, Integer tranceno, Double amount) {
+    public void OK96(String topic, String tranceno, Double amount) {
         System.out.println("giaogiao"+RootContext.getXID());
         //床架充值订单
         recharge(topic, tranceno, amount);

@@ -19,7 +19,7 @@ function Register() {
         }else if(info == "error1") {
             api['error']({
                 message: `注册失败`,
-                description: <span>请检查你的账号和密码</span>,
+                description: <span>您注册的账号已存在</span>,
                 info,
             });
         }else if(info == "error2"){
@@ -79,7 +79,7 @@ function Register() {
             <div className='context'>
                 {contextHolder}
                 <div className='head'><h2>用户注册</h2></div>
-                <div className='main'>
+                <div className='main1'>
                     <Form
                         name="basic"
                         labelCol={{ span: 8 }}

@@ -2,6 +2,7 @@ package com.tyza66.user.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -37,7 +38,7 @@ public class UserController {
     @PostMapping("/login")
     public JSON login(@RequestBody User user){
         JSONObject obj = JSONUtil.createObj();
-        User login = userService.login(user.getUsername(), user.getPassword());
+        User login = userService.login(user.getUsername(), SecureUtil.sha1(user.getPassword()));
         if(login!=null){
             obj.set("code","200");
             obj.set("msg","登陆成功");
@@ -56,7 +57,7 @@ public class UserController {
     @PostMapping("/register")
     public JSON register(@RequestBody User user){
         JSONObject obj = JSONUtil.createObj();
-        User register = userService.register(user.getUsername(), user.getPassword(), 0);
+        User register = userService.register(user.getUsername(), SecureUtil.sha1(user.getPassword()), 0);
         if(register!=null){
             obj.set("code","200");
             obj.set("msg","注册成功");

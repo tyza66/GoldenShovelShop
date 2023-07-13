@@ -109,7 +109,7 @@ function Login() {
             <div className='context'>
                 {contextHolder}
                 <div className='head'><h2>用户登录</h2></div>
-                <div className='main'>
+                <div className='main1'>
                     <Form
                         name="basic"
                         labelCol={{ span: 8 }}

@@ -7,9 +7,9 @@ package com.tyza66.recharge.service;
  **/
 
 public interface RechargeService {
-    public void recharge(String topic,Integer tranceno,Double amount);
+    public void recharge(String topic,String tranceno,Double amount);
 
-    public void makeStatusOk(Integer tranceno);
+    public void makeStatusOk(String tranceno);
 
-    public void OK96(String topic, Integer tranceno, Double amount);
+    public void OK96(String topic, String tranceno, Double amount);
 }

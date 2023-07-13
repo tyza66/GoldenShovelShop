@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import request from '../utils/request'
 import { Button } from 'antd';
-import '../styles/home.css';
+import '../styles/recharge.css';
 
-function Home() {
+function Rechargeok() {
     const [user, setUser] = useState({ username: "未登录" })
     const [moeny, setMoeny] = useState("-")
+    const [timer,setTimer] = useState("三")
     function getCookie(key) {
         // 将所有cookie键和值存储在一个数组中  
         var cookies = document.cookie.split(';');
@@ -96,26 +97,40 @@ function Home() {
         }).catch((err) => {
             console.log(err)
         })
+        setTimeout(() => {
+            setTimer("二")
+            setTimeout(() => {
+                setTimer("一")
+                setTimeout(() => {
+                    setTimer("零")
+                    window.location.href = "/#/home"
+                },1000)
+            },1000)
+        },1000)
     }, [])
-
-    function login(){
-        window.location.href="#/login"
-    }
-
-    function recharge(){
-        window.location.href="#/recharge"
+    function home(){
+        window.location.href = "/#/home"
     }
     return (
         <>
             <div className="context">
                 <div className='header'>
-                    <div className='title'>金铲子商店</div>
-                    <div className='user'>当前用户：{user.username} {(user.username=="未登录")?<Button type="link" onClick={login}>登录</Button>:<Button type="link" onClick={logout}>注销</Button>}</div>
-                    <div className='money'>当前余额：{moeny}金币<Button type="link" onClick={recharge}>充值</Button></div>
+                    <div className='title'>充值</div>
+                    <div className='user'>当前用户：{user.username} <Button type="link" onClick={logout}>注销</Button></div>
+                    <div className='money'>当前余额：{moeny}金币<Button type="link">充值</Button></div>
+                </div>
+                <div className='main'>
+                    <div className='inmain'>
+                        <h2 class="title2">充值成功</h2>
+                        <h3 class="title2">充值完成，{timer}秒后将自动跳转到主页</h3>
+                        <h3 class="title2">如有任何问题请联系客服</h3>
+                        <h3 class="title2">https://github.com/tyza66</h3>
+                        <button className='b1' onClick={home}> 返回主页 </button>
+                    </div>
                 </div>
             </div>
         </>
     );
 }
 
-export default Home;
+export default Rechargeok;

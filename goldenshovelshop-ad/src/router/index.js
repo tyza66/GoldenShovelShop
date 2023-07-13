@@ -3,6 +3,7 @@ import Home from '../pages/home'
 import Login from '../pages/login'
 import Register from '../pages/register'
 import Recharge from '../pages/recharge'
+import Rechargeok from '../pages/rechargeOK'
 
 export const globalRouters = createHashRouter([
     {
@@ -24,6 +25,10 @@ export const globalRouters = createHashRouter([
     {
         path: '/recharge',
         element: <Recharge />,
+    },
+    {
+        path: '/rechargeok',
+        element: <Rechargeok />,
     },
     {
         path: '*',

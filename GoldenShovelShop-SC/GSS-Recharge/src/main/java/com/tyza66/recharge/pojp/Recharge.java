@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Recharge {
     Integer id;
     String topic;
-    Integer traceno;
+    String traceno;
     Double amount;
     Integer status;
 }

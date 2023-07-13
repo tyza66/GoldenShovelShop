@@ -97,13 +97,37 @@ function Recharge() {
             console.log(err)
         })
     }, [])
+
+    function recharge(){
+        //点击充值按钮的时候执行的方法
+        //直接调用沙箱支付环境并且传入参数 直接跳转成功
+        
+    }
     return (
         <>
             <div className="context">
                 <div className='header'>
-                    <div className='title'>金铲子商店</div>
+                    <div className='title'>充值</div>
                     <div className='user'>当前用户：{user.username} <Button type="link" onClick={logout}>注销</Button></div>
                     <div className='money'>当前余额：{moeny}金币<Button type="link">充值</Button></div>
+                </div>
+                <div className='main'>
+                    <div className='inmain'>
+                        <h2 class="title2">选择您想充值的金额</h2>
+                        <form class="form">
+                            <label for="01">100金币(￥96)</label>
+                            <input id="01" type="radio" name="r" value="1" />
+                            <label for="01">200金币(￥196)</label>
+                            <input id="01" type="radio" name="r" value="2" />
+                            <label for="02">500金币(￥396)</label>
+                            <input id="02" type="radio" name="r" value="3" />
+                            <label for="03">10000金币(￥9600)</label>
+                            <input id="03" type="radio" name="r" value="4" />
+                            <label for="03">20000金币(￥10960)</label>
+                            <input id="03" type="radio" name="r" value="5" />
+                        </form>
+                        <button className='b1' onClick={recharge}> 充值 </button>
+                    </div>
                 </div>
             </div>
         </>
