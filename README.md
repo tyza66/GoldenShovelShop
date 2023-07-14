@@ -29,8 +29,8 @@
 </details>
 
 ##### 使用技术
-- 环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、RocketMQ、Sentinel1.8、Seata1.3、Redis
-- 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、RocketMQ、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce
+- 环境：Java8、Node、React、MySQL8+、Nacos1.4.1、Docker、Sentinel1.8、Seata1.3、Redis
+- 后端技术栈：Spring、Spring Boot、Spring Cloud、Spring Cloud Alibaba、Junit、Lombok、Sa-Token系列、MyBatis、MyBatis Plus、Hutool、Sentinel、Seata、Jackson、Dubbo、Lettuce
 - 前端技术栈：React、Ant Design、Axios、React Router、uiverse.io
 
 ##### Nacos注册中心
@@ -40,6 +40,7 @@
 ##### 服务端口列表
 - Nacos(注册中心)：8848
 - Sentinel(流控降级)：9091
+- RocketMQ控制台：8080
 - React(前端页面)：3000
 - GSS-Gateway(Gateway网关)：9090
 - GSS-User(用户服务)：9601
@@ -47,7 +48,6 @@
 - GSS-Recharge(充值服务)：9603
 - GSS-Order(订单管理)：9604
 - GSS-Gift(活动管理)：9605
-- GSS-Comment(评论管理)：9606
 
 ##### 文件对应列表
 - 微服务后端：GoldenShovelShop-SC
@@ -64,7 +64,6 @@
 - Q：怎么保证用户密码的安全性？ A：保存的密码使用SHA1加密后进行保存
 - Q：怎么保证账户的安全性？ A：使用Sa-Token进行用户的登录验证
 - Q：怎么实现的全局登录状态验证？ A：使用Sa-Token集成Redis和Sa-Token继承Dubbo，并且遵循Sa-Token的前后端分离写法，手动保存cookie，并且手动向请求头中加入token，并且实现分布式Session的功能
-- Q：怎么处理抢优惠券被疯抢的高并发场景？ A：用户点击领取优惠券后，先让用户界面进行等待加载，我们先将领取优惠券的操作提交到MQ中，再由MQ异步处理，同时用户端进行不断的检查优惠券是否领取成功，如果成功则弹出成功信息，如果超时失败则弹出失败信息
 
 ##### 用户权限代码表
 - 普通用户：0

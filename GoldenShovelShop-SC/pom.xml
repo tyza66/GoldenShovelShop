@@ -13,7 +13,6 @@
         <module>GSS-Gateway</module>
         <module>GSS-User</module>
         <module>GSS-Goods</module>
-        <module>GSS-CouponMQHandler</module>
         <module>GSS-Recharge</module>
         <module>GSS-Order</module>
         <module>GSS-Gift</module>

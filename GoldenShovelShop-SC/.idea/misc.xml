@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/GSS-Comment/pom.xml" />
+        <option value="$PROJECT_DIR$/GSS-CouponMQHandler/pom.xml" />
       </set>
     </option>
   </component>

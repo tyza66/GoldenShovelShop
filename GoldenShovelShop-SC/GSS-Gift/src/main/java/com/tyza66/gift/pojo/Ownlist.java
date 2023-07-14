@@ -18,6 +18,5 @@ public class Ownlist {
     String username;
     Integer giftid;
     Integer num;
-
     Double price;
 }
