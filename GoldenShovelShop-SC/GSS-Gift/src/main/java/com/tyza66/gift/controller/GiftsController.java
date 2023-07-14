@@ -30,4 +30,12 @@ public class GiftsController {
         obj.set("code","200");
         return obj;
     }
+
+    @GetMapping("/get")
+    public JSON get(){
+        JSONObject obj = JSONUtil.createObj();
+        giftsService.giftIn(1);
+        obj.set("code","200");
+        return obj;
+    }
 }

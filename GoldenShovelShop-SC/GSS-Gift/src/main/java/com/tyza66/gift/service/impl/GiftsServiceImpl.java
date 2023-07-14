@@ -1,10 +1,21 @@
 package com.tyza66.gift.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tyza66.gift.mapper.GiftsMapper;
+import com.tyza66.gift.mapper.OwnlistMapper;
 import com.tyza66.gift.pojo.Gifts;
+import com.tyza66.gift.pojo.Ownlist;
 import com.tyza66.gift.service.GiftsService;
+import com.tyza66.user.pojo.User;
+import com.tyza66.user.service.UserService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * Author: tyza66
@@ -14,6 +25,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements GiftsService {
+
+    @DubboReference(check = false)
+    UserService userService;
+
+    @Resource
+    OwnlistMapper ownlistMapper;
     @Override
     public int getNum(int id) {
         return baseMapper.selectById(id).getNum();
@@ -25,9 +42,15 @@ public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements
     }
 
     @Override
-    public void giftIn(String username, Integer giftid, Double price) {
-
+    @Transactional
+    public void giftIn(Integer giftid) {
+        User currentUser = userService.getCurrentUser();
+        Gifts gifts = baseMapper.selectById(1);
+        Integer num = gifts.getNum();
+        if(num>=0&&currentUser!=null){
+            gifts.setNum(gifts.getNum()-1);
+            baseMapper.updateById(gifts);
+            ownlistMapper.insert(new Ownlist(0,currentUser.getUsername(),gifts.getId(),1,gifts.getPrice()));
+        }
     }
-
-
 }

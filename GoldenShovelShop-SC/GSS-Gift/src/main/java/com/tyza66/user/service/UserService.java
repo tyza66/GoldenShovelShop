@@ -8,12 +8,12 @@ import com.tyza66.user.pojo.User;
  * Github: https://github.com/tyza66
  **/
 
-public interface UserService{
+public interface UserService {
     User login(String username, String password);
 
     User searchByUsername(String username);
 
-    User register(String username,String password, Integer power);
+    User register(String username, String password, Integer power);
 
     public User getCurrentUser();
 }

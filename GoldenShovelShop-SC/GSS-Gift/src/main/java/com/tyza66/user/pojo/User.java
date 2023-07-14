@@ -3,7 +3,6 @@ package com.tyza66.user.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.Serializable;
 

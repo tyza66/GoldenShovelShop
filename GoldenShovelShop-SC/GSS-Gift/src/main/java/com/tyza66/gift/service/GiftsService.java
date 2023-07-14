@@ -14,5 +14,5 @@ public interface GiftsService {
 
     public Gifts getGift();
 
-    public void giftIn(String username,Integer giftid,Double price);
+    public void giftIn(Integer giftid);
 }

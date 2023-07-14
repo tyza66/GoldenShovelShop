@@ -1,5 +1,6 @@
 package com.tyza66.user.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tyza66.user.mapper.UserMapper;
@@ -7,6 +8,7 @@ import com.tyza66.user.mapper.UseraccountMapper;
 import com.tyza66.user.pojo.User;
 import com.tyza66.user.pojo.Useraccount;
 import com.tyza66.user.service.UserService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import java.util.List;
  **/
 
 @Service
+@DubboService
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
@@ -56,5 +59,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         useraccountMapper.insert(new Useraccount(0, 0.0, username));
         baseMapper.insert(user);
         return user;
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return ((User)StpUtil.getSession().get("user"));
     }
 }
