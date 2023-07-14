@@ -10,5 +10,4 @@ import com.tyza66.order.pojo.Order;
  **/
 
 public interface OrderMapper extends BaseMapper<Order> {
-    
 }
