@@ -15,4 +15,6 @@ public interface GiftsService {
     public Gifts getGift();
 
     public void giftIn(Integer giftid);
+
+    public void useGift();
 }

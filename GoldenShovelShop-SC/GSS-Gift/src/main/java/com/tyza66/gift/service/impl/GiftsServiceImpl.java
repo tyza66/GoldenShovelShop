@@ -25,6 +25,7 @@ import javax.annotation.Resource;
  **/
 
 @Service
+@DubboService
 public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements GiftsService {
 
     @DubboReference(check = false)
@@ -58,6 +59,20 @@ public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements
             gifts.setNum(gifts.getNum()-1);
             baseMapper.updateById(gifts);
             ownlistMapper.insert(new Ownlist(0,currentUser.getUsername(),gifts.getId(),1,gifts.getPrice()));
+        }
+    }
+
+    @Override
+    public void useGift() {
+        User currentUser = userService.getCurrentUser();
+        if(currentUser==null){
+            return;
+        }
+        QueryWrapper<Ownlist> ownlistQueryWrapper = new QueryWrapper<>();
+        ownlistQueryWrapper.eq("username",currentUser.getUsername());
+        Ownlist ownlist = ownlistMapper.selectOne(ownlistQueryWrapper);
+        if(ownlist!=null){
+            ownlistMapper.deleteById(ownlist);
         }
     }
 }
