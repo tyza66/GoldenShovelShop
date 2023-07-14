@@ -22,6 +22,10 @@ spring:
           uri: lb://GSS-Recharge
           predicates:
             - Path=/alipay/**
+        - id: gifts_route
+          uri: lb://GSS-Gift
+          predicates:
+            - Path=/gifts/**
       globalcors:
         add-to-simple-url-handler-mapping: true
         cors-configurations:

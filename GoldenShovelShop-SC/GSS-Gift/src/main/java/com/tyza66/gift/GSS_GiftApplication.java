@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.tyza66.gift.mapper")
 @EnableDubbo
-public class GSS_GiftApplication
+public class  GSS_GiftApplication
 {
     public static void main( String[] args )
     {
