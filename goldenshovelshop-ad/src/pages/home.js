@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import request from '../utils/request'
-import { Button } from 'antd';
+import { Button,notification } from 'antd';
 import '../styles/home.css';
 
 function Home() {
+    const [api, contextHolder] = notification.useNotification();
     const [user, setUser] = useState({ username: "未登录" })
     const [moeny, setMoeny] = useState("-")
     const [count, setCount] = useState(0)
@@ -77,6 +78,28 @@ function Home() {
         )
     }
 
+    const openNotification = (info) => {
+        if (info == "success") {
+            api['success']({
+                message: `领取成功`,
+                description: <span>优惠券已经到账(每个用户只能领取一次)</span>,
+                info,
+            });
+        } else if (info == "error1") {
+            api['error']({
+                message: `领取失败`,
+                description: <span>你已经领取过了</span>,
+                info,
+            });
+        } else if (info == "error2") {
+            api['error']({
+                message: `购买失败`,
+                description: <span>您当前的余额不足，请先充值</span>,
+                info,
+            });
+        }
+    };
+
     useEffect(() => {
         request.get("/user/checkLogin", {
             headers: {
@@ -131,14 +154,24 @@ function Home() {
             request.get("/gifts/num").then((response) => {
                 if (response.data.code == 200) {
                     setCount(response.data.num)
+                    openNotification("success")
                 }
             }).catch((err) => {
                 console.log(err)
             })
         })
     }
+
+    function buy(){
+        console.log(good.price,moeny)
+        if(good.price>=moeny){
+            openNotification("error2")
+            return;
+        }
+    }
     return (
         <>
+            {contextHolder}
             <div className="context">
                 <div className='header'>
                     <div className='title'>金铲子商店</div>
@@ -161,7 +194,7 @@ function Home() {
                     <hr class="card-divider" />
                     <div class="card-footer">
                         <div class="card-price">{good.price}<span>金币</span></div>
-                        <button class="card-btn">
+                        <button class="card-btn" onClick={buy}>
                             <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m397.78 316h-205.13a15 15 0 0 1 -14.65-11.67l-34.54-150.48a15 15 0 0 1 14.62-18.36h274.27a15 15 0 0 1 14.65 18.36l-34.6 150.48a15 15 0 0 1 -14.62 11.67zm-193.19-30h181.25l27.67-120.48h-236.6z"></path><path d="m222 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m368.42 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z"></path></svg>
                         </button>
                     </div>
