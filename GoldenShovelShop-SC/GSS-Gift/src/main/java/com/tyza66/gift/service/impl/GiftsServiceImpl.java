@@ -23,4 +23,11 @@ public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements
     public Gifts getGift() {
         return baseMapper.selectById(1);
     }
+
+    @Override
+    public void giftIn(String username, Integer giftid, Double price) {
+
+    }
+
+
 }

@@ -13,4 +13,6 @@ public interface GiftsService {
     public int getNum(int id);
 
     public Gifts getGift();
+
+    public void giftIn(String username,Integer giftid,Double price);
 }

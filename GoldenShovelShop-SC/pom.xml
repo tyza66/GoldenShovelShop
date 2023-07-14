@@ -17,7 +17,6 @@
         <module>GSS-Recharge</module>
         <module>GSS-Order</module>
         <module>GSS-Gift</module>
-        <module>GSS-Comment</module>
     </modules>
 
     <properties>
