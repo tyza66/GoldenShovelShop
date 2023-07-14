@@ -1,6 +1,7 @@
 package com.tyza66.gift.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tyza66.gift.mapper.GiftsMapper;
 import com.tyza66.gift.mapper.OwnlistMapper;
@@ -45,9 +46,15 @@ public class GiftsServiceImpl extends ServiceImpl<GiftsMapper, Gifts> implements
     @Transactional
     public void giftIn(Integer giftid) {
         User currentUser = userService.getCurrentUser();
+        if(currentUser==null){
+            return;
+        }
         Gifts gifts = baseMapper.selectById(1);
         Integer num = gifts.getNum();
-        if(num>=0&&currentUser!=null){
+        QueryWrapper<Ownlist> ownlistQueryWrapper = new QueryWrapper<>();
+        ownlistQueryWrapper.eq("username",currentUser.getUsername());
+        Ownlist ownlist = ownlistMapper.selectOne(ownlistQueryWrapper);
+        if(num>=0&&ownlist==null){
             gifts.setNum(gifts.getNum()-1);
             baseMapper.updateById(gifts);
             ownlistMapper.insert(new Ownlist(0,currentUser.getUsername(),gifts.getId(),1,gifts.getPrice()));
