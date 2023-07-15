@@ -24,9 +24,6 @@
 <details><summary>充值成功</summary>
 <img src="./文档/图片/充值成功.png"/>
 </details>
-<details><summary>领取优惠券</summary>
-<img src="./文档/图片/领取优惠券.png"/>
-</details>
 <details><summary>注册中心</summary>
 <img src="./文档/图片/注册中心.png"/>
 </details>

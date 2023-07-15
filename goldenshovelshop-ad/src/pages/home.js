@@ -97,12 +97,6 @@ function Home() {
                 description: <span>您当前的余额不足，请先充值</span>,
                 info,
             });
-        }else if (info == "error3") {
-            api['error']({
-                message: `未登录`,
-                description: <span>请先登录</span>,
-                info,
-            });
         }
     };
 
@@ -152,10 +146,6 @@ function Home() {
     }
 
     function getGift(){
-        if(user.username=="未登录"){
-            openNotification("error3");
-            return;
-        }
         request.get("/gifts/get",{
             headers: {
                 "satoken": getCookie("satoken")
@@ -173,10 +163,6 @@ function Home() {
     }
 
     function buy(){
-        if(user.username=="未登录"){
-            openNotification("error3");
-            return;
-        }
         console.log(good.price,moeny)
         if(good.price>=moeny){
             openNotification("error2")
