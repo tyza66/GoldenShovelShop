@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 /**
  * Author: tyza66
  * Date: 2023/7/13 18:38
@@ -15,7 +13,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Goods implements Serializable {
+public class Goods {
     Integer id;
     String title;
     String info;

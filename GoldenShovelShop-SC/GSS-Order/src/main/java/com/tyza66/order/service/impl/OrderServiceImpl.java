@@ -1,15 +1,7 @@
 package com.tyza66.order.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tyza66.goods.pojo.Goods;
-import com.tyza66.goods.service.GoodsService;
 import com.tyza66.order.mapper.OrderMapper;
 import com.tyza66.order.pojo.Order;
-import com.tyza66.order.service.OrderService;
-import com.tyza66.user.pojo.User;
-import com.tyza66.user.service.UserService;
-import com.tyza66.user.service.UseraccountService;
-import io.seata.spring.annotation.GlobalTransactional;
-import org.apache.dubbo.config.annotation.DubboReference;
 
 /**
  * Author: tyza66
@@ -17,6 +9,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
  * Github: https://github.com/tyza66
  **/
 
+<<<<<<< HEAD
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
     @DubboReference(check = false)
@@ -46,10 +39,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         baseMapper.insert(new Order(0,currentUser.getUsername(),"not",goods.getPrice()));
 
         //完成订单
-        baseMapper.get
+
         //扣钱
         useraccountService.reduceMoney(currentUser.getUsername(),goods.getPrice());
         //直接完成交易
         return 1;
     }
+=======
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> {
+>>>>>>> parent of 0289542 (1)
 }

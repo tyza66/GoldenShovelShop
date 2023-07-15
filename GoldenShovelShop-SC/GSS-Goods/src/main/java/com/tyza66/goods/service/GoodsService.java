@@ -10,6 +10,4 @@ import com.tyza66.goods.pojo.Goods;
 
 public interface GoodsService {
     Goods getGoods();
-
-    void setGoods(Goods goods);
 }

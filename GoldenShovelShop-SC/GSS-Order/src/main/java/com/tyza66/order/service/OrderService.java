@@ -7,6 +7,4 @@ package com.tyza66.order.service;
  **/
 
 public interface OrderService {
-
-    public int buy();
 }
