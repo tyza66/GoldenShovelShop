@@ -1,24 +1,20 @@
-package com.tyza66.goods.pojo;
+package com.tyza66.user.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 /**
  * Author: tyza66
- * Date: 2023/7/13 18:38
+ * Date: 2023/7/12 10:47
  * Github: https://github.com/tyza66
  **/
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Goods implements Serializable {
+public class Useraccount {
     Integer id;
-    String title;
-    String info;
-    Double price;
-    Integer store;
+    Double money;
+    String username;
 }

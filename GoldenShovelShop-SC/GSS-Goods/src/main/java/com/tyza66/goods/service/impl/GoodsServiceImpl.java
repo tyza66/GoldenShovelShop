@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tyza66.goods.mapper.GoodsMapper;
 import com.tyza66.goods.pojo.Goods;
 import com.tyza66.goods.service.GoodsService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,9 +14,15 @@ import org.springframework.stereotype.Service;
  **/
 
 @Service
+@DubboService
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
     @Override
     public Goods getGoods() {
         return baseMapper.selectById(1);
+    }
+
+    @Override
+    public void setGoods(Goods goods) {
+        baseMapper.updateById(goods);
     }
 }
