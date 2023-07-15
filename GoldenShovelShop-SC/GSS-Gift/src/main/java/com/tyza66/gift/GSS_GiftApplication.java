@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.tyza66.gift"})
 @MapperScan("com.tyza66.gift.mapper")
 @EnableDubbo
 @EnableTransactionManagement

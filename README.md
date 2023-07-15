@@ -6,8 +6,6 @@
 - 分布式后端，完全前后端分离，使用网关解决负载均衡和跨域问题
 - 用户密码使用SHA1加密
 
-##### 设计图
-
 ##### 演示图
 <details><summary>主页</summary>
 <img src="./文档/图片/主页.png"/>
@@ -80,5 +78,12 @@
 - 权限不足：201
 - 失败：202
 - 错误：203
+
+##### 项目翻车了
+- 目前回滚到领取优惠券之前（这个功能已经实现完了，可以在时光机里面看到）
+- 就是隔了一晚上而已，GSS-Gift和GSS-Order这两个模块就不好使了，启动不起来，启动的时候说一个根本在这个模块中不存在的一系列bean注入失败
+- 版本回退到前一天上午的版本，并且chean之后这个问题依然存在
+- 这是刚才错误出现的代码所在仓库中所在的文件夹https://github.com/tyza66/GoldenShovelShop/tree/main/GoldenShovelShop-SC，主要问题出现在GSS-Gift和GSS-Order两个模块中，报错信息为org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'goodsServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.tyza66.goods.mapper.GoodsMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+- 放弃
 
 By：tyza66
