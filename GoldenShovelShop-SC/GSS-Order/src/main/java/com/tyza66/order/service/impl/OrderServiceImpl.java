@@ -46,7 +46,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         baseMapper.insert(new Order(0,currentUser.getUsername(),"not",goods.getPrice()));
 
         //完成订单
-        baseMapper.get
+
         //扣钱
         useraccountService.reduceMoney(currentUser.getUsername(),goods.getPrice());
         //直接完成交易
